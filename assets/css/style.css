@@ -1,0 +1,16 @@
+.container .row .card img{
+    width: 200px;
+    height: 250px;
+    
+}
+.container .row .card .card-body h5{
+    height: 50px;
+    overflow: hidden;
+    text-align: center;
+}
+.container .row .card .card-body p{
+    height: 20px;
+    overflow: hidden;
+    margin-top: -10px;
+    text-align: center;
+}
