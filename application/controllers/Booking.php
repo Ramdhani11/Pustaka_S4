@@ -46,4 +46,29 @@ class Booking extends CI_Controller
             redirect('beranda');
         }
     }
+    public function delete($id)
+    {
+        $this->db->delete('temp', ['id' => $id]);
+        $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
+        Buku telah berhasil dihapus
+      </div>');
+        redirect('Booking');
+    }
+    public function print()
+    {
+        $this->load->library('dompdf_gen');
+
+        $data['temp'] = $temp = $this->db->get_where('temp', ['email_user' => $this->session->userdata('email')])->result_array();
+
+        $this->load->view('laporan_pdf', $data);
+
+        $paper_size = 'A4';
+        $oriented = 'landscape';
+        $html = $this->output->get_output();
+        $this->dompdf->set_paper($paper_size, $oriented);
+
+        $this->dompdf->load_html($html);
+        $this->dompdf->render();
+        $this->dompdf->stream("laporan_booking.pdf", array('Attachment' => 0));
+    }
 }

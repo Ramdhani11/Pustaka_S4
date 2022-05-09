@@ -31,7 +31,8 @@
                                 <a href="<?= base_url('member/profil') ?>" class="nav-link">Profil</a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= base_url('booking') ?>" class="nav-link">Booking</a>
+                                <a href="<?= base_url('booking') ?>" class="nav-link">Booking <b><?php $query = $this->db->query("SELECT COUNT(`id`) as `TOTAL` FROM `temp` WHERE `id_user`= " . $this->session->userdata('id'))->row_array() ?><?= $query['TOTAL']; ?></b> Buku</a>
+
                             </li>
                             <li class="nav-item">
                                 <a href="<?= base_url('member/logout') ?>" class="nav-link">Logout</a>
